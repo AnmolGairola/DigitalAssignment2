@@ -1,0 +1,61 @@
+---
+title: "DA2"
+author: "Anmol Gairola"
+date: "12/04/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r loading libraries}
+
+library(tidyverse)
+
+```
+
+```{r loading datasets}
+
+df = read.csv("CompleteDataset.csv")
+
+```
+
+```{r}
+ggplot(data = df)+
+  geom_density(mapping = aes(Age))
+
+```
+```{r}
+
+ggplot(data = df)+
+  geom_density(mapping = aes(Overall))
+
+```
+
+```{r}
+summ <- df %>% 
+  group_by(Nationality) %>% 
+  summarise(age = mean(Age), st = mean(Overall))
+  
+
+```
+
+```{r}
+ggplot(data = summ)+
+  geom_point(mapping = aes(x=Nationality, y = age, color = st))
+
+```
+
+```{r}
+
+df2 = read.csv("players_15.csv")
+
+```
+
+```{r}
+
+ggplot(data = df2)+
+  geom_point(mapping = aes(x=height_cm, y = weight_kg, color = preferred_foot, size = overall), alpha = .5)
+
+```
